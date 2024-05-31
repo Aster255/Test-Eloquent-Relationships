@@ -13,6 +13,11 @@ class Task extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'users_id');
+        return $this->belongsTo(User::class, 'users_id')
+            ->withDefault(function (User $user) {
+                $user->name = 'Guest User';
+            });
     }
+
+
 }
